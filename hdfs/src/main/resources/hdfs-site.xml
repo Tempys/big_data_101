@@ -1,4 +1,12 @@
   <configuration>
+
+      <property>
+          <name>dfs.client.use.datanode.hostname</name>
+          <value>true</value>
+          <description>Whether clients should use datanode hostnames when
+              connecting to datanodes.
+          </description>
+      </property>
     
     <property>
       <name>dfs.block.access.token.enable</name>
