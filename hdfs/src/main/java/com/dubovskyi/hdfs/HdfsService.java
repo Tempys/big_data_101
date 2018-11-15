@@ -26,11 +26,19 @@ public class HdfsService {
 
   private static final Logger log = LoggerFactory.getLogger(HdfsService.class);
 
+
+    /**
+     * this method upload destination.csv from hdfs and convert this data to avro file and save in hdfs
+     * @param from - hdfs path to initial destination.csv
+     * @param to - hadfs path of avro file
+     * @param schema - avro schema for destination.csv
+     * @throws IOException
+     */
     public void saveInAvro(String from, String to, String schema) throws IOException {
 
         Configuration conf = new Configuration ();
         FileSystem hdfs = FileSystem.get(conf);
-        Schema destinationSchema = SchemaHelper.parseSchema(schema);
+        Schema destinationSchema = AvroHelper.parseSchema(schema);
 
         FSDataInputStream in = hdfs.open(new Path(from));
         OutputStream out = hdfs.create(new Path(to));
@@ -54,7 +62,7 @@ public class HdfsService {
 
                      if (line != null) {
 
-                       GenericRecord genericRecord = createGenericRecord(line, names, destinationSchema);
+                       GenericRecord genericRecord = AvroHelper.createGenericRecord(line, names, destinationSchema);
                        dataFileWriter.append(genericRecord);
 
                      }
@@ -72,30 +80,7 @@ public class HdfsService {
        }
     }
 
-    protected   GenericRecord createGenericRecord(String line,String[] names,Schema schema) {
-        GenericRecord record = new GenericData.Record(schema);
-        System.out.println(line);
 
-        String[] values = line.split(",");
 
-        for(int i =0;i<values.length;i++){
 
-            Object value = toAvro(names[i],values[i],schema);
-            record.put(names[i],value);
-        }
-
-        return record;
-    }
-
-    private Object toAvro(String name,String value,Schema schema)   {
-
-        Schema.Type type = schema.getField(name).schema().getTypes().get(1).getType();
-
-        switch (type){
-            case LONG:  return Long.parseLong(value);
-            case DOUBLE: return  Double.parseDouble(value);
-            default: throw new IllegalArgumentException(String.format("mapping for this type %s is missing",type));
-        }
-
-    }
 }
