@@ -38,7 +38,7 @@ public class AvroHelper {
 
 
         for(int i =0;i<values.length;i++){
-            System.out.println("name: "+names[i]+ " values: "+ values[i] );
+           // System.out.println("name: "+names[i]+ " values: "+ values[i] );
             Object value = toAvro(names[i],values[i],schema);
             record.put(names[i],value);
         }

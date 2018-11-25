@@ -54,7 +54,7 @@ public class HdfsService {
                dataFileWriter.create(destinationSchema, out);
                String line;
                line = br.readLine();
-               System.out.println("line: "+ line);
+              // System.out.println("line: "+ line);
                String[] names = line.split(",");
 
                while (line != null) {
@@ -80,6 +80,12 @@ public class HdfsService {
                }
            }
        }
+    }
+
+    public void saveFromLocalToHdfs(String src,String dst) throws IOException {
+        Configuration conf = new Configuration ();
+        FileSystem hdfs = FileSystem.get(conf);
+        hdfs.copyFromLocalFile(new Path(src),new Path(dst));
     }
 
 
