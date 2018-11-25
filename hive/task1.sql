@@ -48,3 +48,10 @@ CREATE TABLE destination ( srch_destination_id INT,	d1 DOUBLE,	d2 DOUBLE,	d3 DOU
 
 
 LOAD DATA INPATH '/destinationavro/destinations.avro' OVERWRITE INTO TABLE destination;
+
+
+
+select train.hotel_country,count(train.user_id) as user_count from train
+where train.is_booking = 1
+group by train.hotel_country
+ORDER BY user_count DESC LIMIT 3;

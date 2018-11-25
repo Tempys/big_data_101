@@ -1,0 +1,1 @@
+select max(datediff(to_date(train.srch_co),to_date(train.srch_ci))) as dur  from train limit 3;
