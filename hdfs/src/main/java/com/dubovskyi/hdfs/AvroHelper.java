@@ -36,8 +36,9 @@ public class AvroHelper {
 
         String[] values = line.split(",");
 
-        for(int i =0;i<values.length;i++){
 
+        for(int i =0;i<values.length;i++){
+            System.out.println("name: "+names[i]+ " values: "+ values[i] );
             Object value = toAvro(names[i],values[i],schema);
             record.put(names[i],value);
         }
@@ -50,9 +51,13 @@ public class AvroHelper {
         Schema.Type type = schema.getField(name).schema().getTypes().get(1).getType();
 
         switch (type){
+
             case LONG:  return Long.parseLong(value);
-            case DOUBLE: return  Double.parseDouble(value);
+            case INT:   return Integer.parseInt(value);
+            case DOUBLE: return value.equals("") ? 0d : Double.parseDouble(value);
+            case STRING: return  value;
             default: throw new IllegalArgumentException(String.format("mapping for this type %s is missing",type));
+
         }
 
     }

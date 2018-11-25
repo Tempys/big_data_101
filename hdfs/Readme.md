@@ -1,0 +1,1 @@
+for creating java classes from avro schema we need to build projects

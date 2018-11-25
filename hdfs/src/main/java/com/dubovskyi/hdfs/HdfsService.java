@@ -54,11 +54,13 @@ public class HdfsService {
                dataFileWriter.create(destinationSchema, out);
                String line;
                line = br.readLine();
+               System.out.println("line: "+ line);
                String[] names = line.split(",");
 
                while (line != null) {
 
                      line = br.readLine();
+
 
                      if (line != null) {
 

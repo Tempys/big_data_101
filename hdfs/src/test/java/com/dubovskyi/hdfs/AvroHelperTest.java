@@ -32,6 +32,7 @@ public class AvroHelperTest {
         assertEquals(5L,genericRecord.get("srch_destination_id"));
 
 
+
     }
 
 }
