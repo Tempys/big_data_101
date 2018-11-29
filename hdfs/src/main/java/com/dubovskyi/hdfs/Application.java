@@ -17,11 +17,11 @@ public class Application {
         final String[] schema = properties.getProperty("avro.schema.path").split(",");
 
         HdfsService hdfsService = new HdfsService();
-
-        for(int i =0; i<from.length;i++){
+        hdfsService.saveInAvro("hdfs://sandbox-hdp.hortonworks.com:8020/train/trains.csv","hdfs://sandbox-hdp.hortonworks.com:8020/trainavro/trains.avro","test.avsc");
+       /* for(int i =0; i<from.length;i++){
             System.out.println(schema[i]);
             hdfsService.saveInAvro(from[i],to[i],schema[i]);
-        }
+        }*/
 
 
 

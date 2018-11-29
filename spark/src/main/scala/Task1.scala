@@ -18,7 +18,7 @@ object Task1 {
       .master("local").getOrCreate()
 
 
-              spark.read
+             spark.read
                    .format("com.databricks.spark.avro")
                    .load("hdfs://sandbox-hdp.hortonworks.com:8020/trainavro/trains.avro")
                    .filter(col("srch_adults_cnt").equalTo(2))
