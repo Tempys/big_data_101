@@ -1,0 +1,43 @@
+buildscript {
+    ext {
+
+        avroPluginVersion = '0.15.1'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+
+    }
+    dependencies {
+        classpath("com.commercehub.gradle.plugin:gradle-avro-plugin:${avroPluginVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.commercehub.gradle.plugin.avro'
+
+group 'com.dubovskyi'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.0.0'
+    compile "org.apache.avro:avro:1.8.2"
+// https://mvnrepository.com/artifact/org.apache.kafka/connect-json
+    compile group: 'org.apache.kafka', name: 'connect-json', version: '1.0.0'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
+
+    testCompile group:'org.hamcrest', name:'hamcrest-junit', version:'2.0.0.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.0'
+}
