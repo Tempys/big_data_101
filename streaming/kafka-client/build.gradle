@@ -1,20 +1,5 @@
-buildscript {
-    ext {
-
-        avroPluginVersion = '0.15.1'
-    }
-    repositories {
-        mavenCentral()
-        jcenter()
-
-    }
-    dependencies {
-        classpath("com.commercehub.gradle.plugin:gradle-avro-plugin:${avroPluginVersion}")
-    }
-}
 
 apply plugin: 'java'
-apply plugin: 'com.commercehub.gradle.plugin.avro'
 
 group 'com.dubovskyi'
 version '1.0-SNAPSHOT'
@@ -28,7 +13,7 @@ repositories {
 dependencies {
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
     compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.0.0'
-    compile "org.apache.avro:avro:1.8.2"
+    
 // https://mvnrepository.com/artifact/org.apache.kafka/connect-json
     compile group: 'org.apache.kafka', name: 'connect-json', version: '1.0.0'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
