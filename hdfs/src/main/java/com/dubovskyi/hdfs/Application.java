@@ -17,7 +17,9 @@ public class Application {
         final String[] schema = properties.getProperty("avro.schema.path").split(",");
 
         HdfsService hdfsService = new HdfsService();
-        hdfsService.saveInAvro("hdfs://sandbox-hdp.hortonworks.com:8020/train/trains.csv","hdfs://sandbox-hdp.hortonworks.com:8020/trainavro/trains.avro","test.avsc");
+      ///  hdfsService.saveFromLocalToHdfs("C:\\\\projects\\\\cources\\\\all\\\\train.csv","hdfs://quickstart.cloudera:8020/traincsv/trains.csv");
+
+        hdfsService.saveInAvro("hdfs://quickstart.cloudera:8020/traincsv/trains.csv","hdfs://quickstart.cloudera:8020/trainavro/trains.avro","test.avsc");
        /* for(int i =0; i<from.length;i++){
             System.out.println(schema[i]);
             hdfsService.saveInAvro(from[i],to[i],schema[i]);

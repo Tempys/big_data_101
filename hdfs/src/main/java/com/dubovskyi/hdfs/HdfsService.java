@@ -37,7 +37,10 @@ public class HdfsService {
     public void saveInAvro(String from, String to, String schema) throws IOException {
 
         Configuration conf = new Configuration ();
+        conf.set("fs.default.name","hdfs://quickstart.cloudera:8020");
         FileSystem hdfs = FileSystem.get(conf);
+
+        System.out.println("fs.default.name : - " + conf.get("fs.default.name"));
         Schema destinationSchema = AvroHelper.parseSchema(schema);
 
         FSDataInputStream in = hdfs.open(new Path(from));
@@ -84,6 +87,8 @@ public class HdfsService {
 
     public void saveFromLocalToHdfs(String src,String dst) throws IOException {
         Configuration conf = new Configuration ();
+        conf.set("fs.default.name","hdfs://quickstart.cloudera:8020");
+
         FileSystem hdfs = FileSystem.get(conf);
         hdfs.copyFromLocalFile(new Path(src),new Path(dst));
     }
