@@ -11,15 +11,7 @@ import org.apache.spark.sql.types._
 
 
 
-
-
-
-
-
-
-
-
-object Task2 {
+object KafkaToElkTask {
 
   def main(args: Array[String]): Unit = {
 
@@ -31,7 +23,7 @@ object Task2 {
     var conf = new SparkConf()
         conf.set("spark.io.compression.codec", "snappy")
        //   .set("es.index.auto.create", "true")
-        conf.set("es.nodes","192.168.99.100")
+        conf.set("es.nodes","localhost")
         conf.set("es.port" , "9200")
         conf.set("es.nodes.wan.only", "true")
 
@@ -61,20 +53,6 @@ object Task2 {
       .format("org.elasticsearch.spark.sql")
       .start("streaming/default")
       .awaitTermination()
-
-
-    /*  .writeStream
-     .outputMode("append")
-     .format("console")
-     .option("truncate", "false")
-     .start()
-     .awaitTermination() // Block execution, to force Zeppelin to capture the output*/
-
-      //.show(100)
-     //.write
-     //.format("com.databricks.spark.csv")
-    // .option("header", "true")
-    // .save("hdfs://sandbox-hdp.hortonworks.com:8020/result/result.csv")
 
 
 

@@ -6,9 +6,13 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Column, SparkSession}
 import org.apache.spark.sql.types._
 
-object Task2 {
 
-  def main(args: Array[String]): Unit = {
+/**
+  * Main class which start spark and start batching from kafka to hdfs
+  */
+object Batching {
+
+  /*def main(args: Array[String]): Unit = {
 
     import org.apache.spark.sql.functions._
     import org.apache.avro.SchemaBuilder
@@ -23,7 +27,7 @@ object Task2 {
       .master("local").getOrCreate()
       .read
       .format("kafka")
-      .option("kafka.bootstrap.servers", "192.168.99.100:9092")
+      .option("kafka.bootstrap.servers", "localhost:9092")
       .option("subscribe", "streaming3")
       .option("startingOffsets", "earliest")
       .load()
@@ -33,9 +37,9 @@ object Task2 {
      .write
      .format("com.databricks.spark.csv")
      .option("header", "true")
-     .save("hdfs://sandbox-hdp.hortonworks.com:8020/result1/result1.csv")
+     .save("hdfs://sandbox-hdp.hortonworks.com:8020/result2/result2.csv")
 
 
-  }
+  }*/
 
 }

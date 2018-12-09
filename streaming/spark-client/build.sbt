@@ -8,6 +8,8 @@ scalaVersion :=  "2.11.12"
   "confluent" at "https://packages.confluent.io",
   Resolver.mavenLocal
 )*/
+Compile/mainClass := Some("com.dubovskyi.streaming.Streaming")
+
 
 libraryDependencies += "junit" % "junit" % "4.10" % Test
 
