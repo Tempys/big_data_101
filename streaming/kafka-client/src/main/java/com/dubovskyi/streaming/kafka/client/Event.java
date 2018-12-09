@@ -30,5 +30,5 @@ public class Event {
     private int user_location_country;
     private int posa_continent;
     private int site_name;
-    private String date_time;
+    private long date_time;
 }

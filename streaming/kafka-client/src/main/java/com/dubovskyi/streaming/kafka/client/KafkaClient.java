@@ -9,6 +9,8 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.connect.json.JsonSerializer;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -29,6 +31,11 @@ public class KafkaClient {
         this.topic = properties.getProperty("kafka.topic");
     }
 
+
+    /**
+     * send to kafka event
+     * @param event
+     */
     public  void sendMessage(Event event) {
         Producer<String, JsonNode> producer = createProducer();
         sendJsonRecords(producer,event);
@@ -45,6 +52,12 @@ public class KafkaClient {
         return new KafkaProducer<String, JsonNode>(props);
     }
 
+
+    /**
+     * convert to json java pojo and send to kafka
+     * @param producer
+     * @param event
+     */
     private  void sendJsonRecords(Producer<String, JsonNode> producer,Event event){
         ObjectMapper objectMapper = new ObjectMapper();
         int partition = 0;
@@ -52,14 +65,9 @@ public class KafkaClient {
 
         Future<RecordMetadata> result =  producer.send(new ProducerRecord<String, JsonNode>(topic, partition, Integer.toString(0), jsonNode));
 
-        try {
-            System.out.println(result.get().offset());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
+
+
 
 
 }

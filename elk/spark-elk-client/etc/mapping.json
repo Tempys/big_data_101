@@ -1,0 +1,70 @@
+{"mappings": {
+      "default": {
+        "properties": {
+          "channel": {
+            "type": "long"
+          },
+          "cnt": {
+            "type": "long"
+          },
+          "hotel_cluster": {
+            "type": "long"
+          },
+          "hotel_continent": {
+            "type": "long"
+          },
+          "hotel_country": {
+            "type": "long"
+          },
+          "hotel_market": {
+            "type": "long"
+          },
+          "is_booking": {
+            "type": "long"
+          },
+          "is_mobile": {
+            "type": "long"
+          },
+          "is_package": {
+            "type": "long"
+          },
+          "orig_destination_distance": {
+            "type": "float"
+          },
+          "posa_continent": {
+            "type": "long"
+          },
+          "site_name": {
+            "type": "long"
+          },
+          "srch_adults_cnt": {
+            "type": "long"
+          },
+          "srch_children_cnt": {
+            "type": "long"
+          },
+          "srch_destination_type_id": {
+            "type": "long"
+          },
+          "srch_rm_cnt": {
+            "type": "long"
+          },
+          "user_id": {
+            "type": "long"
+          },
+          "user_location_city": {
+            "type": "long"
+          },
+          "user_location_country": {
+            "type": "long"
+          },
+          "user_location_region": {
+            "type": "long"
+          },
+          "date_time": {
+            "type": "date"
+          }
+        }
+      }
+    }
+  }

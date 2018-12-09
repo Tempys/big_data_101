@@ -1,5 +1,7 @@
 package com.dubovskyi.streaming.kafka.client;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,6 +27,7 @@ public class EventGenerator {
         event.setChannel(randomNum);
         event.setHotel_cluster(randomNum+3);
         event.setIs_booking(0);
+        event.setDate_time(LocalDateTime.now().atZone(ZoneId.of("UTC")).toInstant().toEpochMilli());
 
         return event;
 

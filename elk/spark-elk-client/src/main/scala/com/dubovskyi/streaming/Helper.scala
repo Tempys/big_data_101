@@ -27,6 +27,6 @@ object Helper {
     .add("user_location_country", IntegerType)
     .add("posa_continent", IntegerType)
     .add("site_name", IntegerType)
-    .add("date_time",LongType )
+    .add("date_time", LongType)
 
 }

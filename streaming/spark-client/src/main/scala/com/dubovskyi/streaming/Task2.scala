@@ -6,16 +6,6 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Column, SparkSession}
 import org.apache.spark.sql.types._
 
-
-
-
-
-
-
-
-
-
-
 object Task2 {
 
   def main(args: Array[String]): Unit = {
@@ -34,20 +24,16 @@ object Task2 {
       .read
       .format("kafka")
       .option("kafka.bootstrap.servers", "192.168.99.100:9092")
-      .option("subscribe", "streaming2")
+      .option("subscribe", "streaming3")
       .option("startingOffsets", "earliest")
       .load()
       .selectExpr("CAST(value AS STRING)")
       .select(from_json(col("value"),schema).as("data"))
       .select("data.*")
-      //.show(100)
      .write
      .format("com.databricks.spark.csv")
      .option("header", "true")
-     .save("hdfs://sandbox-hdp.hortonworks.com:8020/result/result.csv")
-
-
-
+     .save("hdfs://sandbox-hdp.hortonworks.com:8020/result1/result1.csv")
 
 
   }
