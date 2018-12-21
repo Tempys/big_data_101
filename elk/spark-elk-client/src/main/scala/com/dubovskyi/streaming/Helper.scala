@@ -4,6 +4,10 @@ import org.apache.spark.sql.types._
 
 object Helper {
 
+
+  /**
+    * Schema of input data from HDfs or kafka
+    */
   val schema = new StructType()
     .add("hotel_cluster", IntegerType)
     .add("cnt", LongType)

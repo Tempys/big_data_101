@@ -1,6 +1,11 @@
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
+
+/**
+  * Find the most popular country where hotels are booked and searched from the same country
+  * Get data from hdfs in avro format
+  */
 object Task2 {
 
   def main(args: Array[String]): Unit = {

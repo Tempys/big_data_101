@@ -14,7 +14,7 @@ public class EventGeneratorTest {
 
     @Test
     public void generateSingLeEvent(){
-       Event event =  eventGenerator.generateEvent();
+         Event event =  eventGenerator.generateEvent();
 
         assertNotNull(event.getChannel());
         assertNotNull(event.getHotel_cluster());

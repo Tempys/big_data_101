@@ -20,6 +20,10 @@ object KafkaToElkTask {
     import Helper.schema
     import org.elasticsearch.spark.sql._
 
+    var bootstrapServer = "192.168.99.100:9092"
+    var topic = "streaming3"
+    val elkIndex = "streaming/default"
+
     var conf = new SparkConf()
         conf.set("spark.io.compression.codec", "snappy")
        //   .set("es.index.auto.create", "true")
@@ -38,8 +42,8 @@ object KafkaToElkTask {
 
       .readStream
       .format("kafka")
-      .option("kafka.bootstrap.servers", "192.168.99.100:9092")
-      .option("subscribe", "streaming3")
+      .option("kafka.bootstrap.servers",bootstrapServer )
+      .option("subscribe", topic)
       .option("startingOffsets", "earliest")
       .load()
       .selectExpr("CAST(value AS STRING)")
@@ -51,7 +55,7 @@ object KafkaToElkTask {
     .writeStream
       .option("checkpointLocation", "/save/location")
       .format("org.elasticsearch.spark.sql")
-      .start("streaming/default")
+      .start(elkIndex)
       .awaitTermination()
 
 

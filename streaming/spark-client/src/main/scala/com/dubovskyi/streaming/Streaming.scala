@@ -15,10 +15,18 @@ object Streaming {
     import org.apache.avro.SchemaBuilder
     import Helper.schema
 
+      val bootstrapServers = "localhost:9092"
+      val topic = "streaming3"
+      val hdfsUrl = "hdfs://sandbox-hdp.hortonworks.com:8020/result4/result4.csv"
+    /**
+      * this data need for calculates metrics and for comparing the perfomance with Batch approach
+      */
+      val metricsConfig = "C:\\projects\\cources\\big_data_101\\streaming\\spark-client\\src\\main\\resources\\metric.properties"
+
     var conf = new SparkConf()
     conf.set("spark.io.compression.codec", "snappy")
     conf.set("spark.sql.streaming.checkpointLocation", "/save12/location-streaming")
-    conf.set("spark.metrics.conf","C:\\projects\\cources\\big_data_101\\streaming\\spark-client\\src\\main\\resources\\metric.properties")
+    conf.set("spark.metrics.conf",metricsConfig)
 
     val spark = SparkSession.builder()
       .config(conf)
@@ -26,8 +34,8 @@ object Streaming {
       .getOrCreate()
       .readStream
       .format("kafka")
-      .option("kafka.bootstrap.servers", "localhost:9092")
-      .option("subscribe", "streaming3")
+      .option("kafka.bootstrap.servers", bootstrapServers )
+      .option("subscribe", topic )
       .option("startingOffsets", "earliest")
       .load()
       .selectExpr("CAST(value AS STRING)")
@@ -36,7 +44,7 @@ object Streaming {
       .writeStream
       .format("com.databricks.spark.csv")
       .option("header", "true")
-      .start("hdfs://sandbox-hdp.hortonworks.com:8020/result4/result4.csv")
+      .start(hdfsUrl)
       .awaitTermination()
 
   }

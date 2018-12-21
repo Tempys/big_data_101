@@ -1,6 +1,10 @@
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
+/**
+  * Find top 3 hotels where people with children are interested but not booked in the end
+  * Get data from hdfs in avro format
+  */
 object Task3 {
 
   def main(args: Array[String]): Unit = {
