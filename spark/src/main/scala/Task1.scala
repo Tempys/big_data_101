@@ -23,7 +23,8 @@ object Task1 {
                    .groupBy("hotel_continent","hotel_country","hotel_market")
                    .agg(count("user_id").as("count"))
                    .orderBy(desc("count"))
-                   .show(3)
+
+      //             .show(3)
   }
 
 }
